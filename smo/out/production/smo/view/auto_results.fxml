@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="676.0" prefWidth="1147.999977929685" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controllers.AutoModeController">
+  <children>
+    <Pane layoutX="3.0" layoutY="0.0" prefHeight="676.0" prefWidth="1145.0" style="-fx-background-color :#d7ecf7;&#10;-fx-border-color:  #0050ab;&#10;-fx-border-width: 5px;&#10;">
+      <children>
+        <TableView id="table" fx:id="table1" layoutX="11.0" layoutY="12.0" prefHeight="334.0" prefWidth="1120.0" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;&#10;-fx-font-size: 15px;">
+          <columns>
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="107.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" styleClass="column-header" text="Источник №" fx:id="source_num" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="127.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="Обработанные" fx:id="proceed_num" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="128.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="Отказанные" fx:id="reject_num" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="122.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="P отказа" visible="true" fx:id="p_reject" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="152.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="Ср. t в буфере" fx:id="av_time_buf" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="155.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="Ср. t на приборе" visible="true" fx:id="av_time_device" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="157.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="Ср. t в системе" fx:id="av_time_system" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="78.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="D1" fx:id="d1" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="86.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="D2" fx:id="d2" />
+          </columns>
+        </TableView>
+        <Button fx:id="back" layoutX="1022.0" layoutY="604.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="47.9609375" prefWidth="97.0" style="-fx-background-color: #7150cc;&#10;-fx-border-color:  #0050ab;" text="Назад" textFill="#ccd4ff">
+          <font>
+            <Font name="System Bold" size="20.0" />
+          </font>
+        </Button>
+        <TableView fx:id="table2" layoutX="11.0" layoutY="358.0" prefHeight="258.0" prefWidth="481.0" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;&#10;-fx-font-size: 15px;">
+          <columns>
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="118.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="Прибор №" fx:id="device_num" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="216.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="Время работы" fx:id="time_device" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="134.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="К" fx:id="ratio_k" />
+          </columns>
+        </TableView>
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

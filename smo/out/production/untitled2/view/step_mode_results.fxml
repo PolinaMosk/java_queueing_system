@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="420.0" prefWidth="732.0" style="-fx-background-color :#d7ecf7;&#10;-fx-border-color:  #0050ab;&#10;-fx-border-width: 5px;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controllers.StepModeController">
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="420.0" prefWidth="732.0">
+      <children>
+        <Label layoutX="16.0" layoutY="338.0" prefHeight="29.0" prefWidth="79.0" text="Буфер" textFill="#0050ab">
+          <font>
+            <Font name="System Bold" size="20.0" />
+          </font>
+        </Label>
+        <TableView fx:id="table" layoutX="95.0" layoutY="7.0" prefHeight="285.0" prefWidth="624.999977929685" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;&#10;-fx-font-size: 15px;" tableMenuButtonVisible="false">
+          <columns>
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="112.0" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="Время" fx:id="time" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="139.0" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="Тип события" fx:id="type" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="118.0" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="Номер заявки" fx:id="request_num" />
+            <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="141.0" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="Приоритет заявки" fx:id="request_priority" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="111.0" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="Прибор" fx:id="device_num" />
+          </columns>
+        </TableView>
+        <Button fx:id="next" layoutX="617.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#next_step" prefHeight="66.0" prefWidth="101.0" style="-fx-background-color: #0050ab;" text="Дальше">
+          <font>
+            <Font name="System Bold" size="17.0" />
+          </font>
+          <textFill>
+            <Color blue="0.969" green="0.925" red="0.843" fx:id="x1" />
+          </textFill>
+        </Button>
+        <HBox fx:id="buffer_info" layoutX="95.0" layoutY="326.0" prefHeight="52.0" prefWidth="505.0" style="-fx-border-color:  #7150cc;&#10;-fx-background-color: #ebf5fa;" />
+        <Button fx:id="turn_back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="29.0" prefWidth="67.0" style="-fx-background-color: #0050ab;" text="Назад" textFill="$x1">
+          <font>
+            <Font name="System Bold" size="12.0" />
+          </font>
+        </Button>
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>
