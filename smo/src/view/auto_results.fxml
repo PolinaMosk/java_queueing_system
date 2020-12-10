@@ -11,7 +11,7 @@
   <children>
     <Pane layoutX="3.0" layoutY="0.0" prefHeight="676.0" prefWidth="1145.0" style="-fx-background-color :#d7ecf7;&#10;-fx-border-color:  #0050ab;&#10;-fx-border-width: 5px;&#10;">
       <children>
-        <TableView id="table" fx:id="table1" layoutX="11.0" layoutY="12.0" prefHeight="334.0" prefWidth="1120.0" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;&#10;-fx-font-size: 15px;">
+        <TableView id="table" fx:id="table1" layoutX="11.0" layoutY="12.0" prefHeight="334.0" prefWidth="1120.0" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;&#10;-fx-font-size: 15px;&#10;-fx-selection-bar:  #7150cc">
           <columns>
             <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="107.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" styleClass="column-header" text="Источник №" fx:id="source_num" />
             <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="127.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="Обработанные" fx:id="proceed_num" />
@@ -36,6 +36,12 @@
             <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="134.0" resizable="false" sortable="false" style="-fx-background-color: #ebf5fa;&#10;-fx-border-color:  #7150cc;" text="К" fx:id="ratio_k" />
           </columns>
         </TableView>
+        <HBox fx:id="buffer" layoutX="532.0" layoutY="455.0" prefHeight="82.0" prefWidth="587.0" style="-fx-border-color: #7150cc;" />
+        <Label layoutX="532.0" layoutY="414.0" text="Конечное состояние буфера">
+          <font>
+            <Font size="18.0" />
+          </font>
+        </Label>
       </children>
     </Pane>
   </children>

@@ -8,6 +8,7 @@ public class Device {
     private double time_on_device;
     private int req_count;
     private double current_time;
+    private Request curr_req;
 
     public Device(int priority, double lambda){
         this.param_lambda = lambda;
@@ -19,10 +20,11 @@ public class Device {
     }
 
     public void processing(Request request, double current_time){
+        this.curr_req = request;
         this.free = false;
         if (this.free_time < request.getGenerate_time()) current_time = request.getGenerate_time();
         this.current_time = current_time;
-        this.free_time = current_time + 1 - Math.exp( - this.param_lambda * Math.random());
+        this.free_time = current_time + this.param_lambda * Math.exp(Math.random());
         time_on_device += this.free_time - current_time;
         req_count++;
     }
@@ -57,5 +59,9 @@ public class Device {
 
     public int getReq_count() {
         return req_count;
+    }
+
+    public Request getCurr_req() {
+        return curr_req;
     }
 }

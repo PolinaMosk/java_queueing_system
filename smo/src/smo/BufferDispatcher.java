@@ -35,13 +35,13 @@ public class BufferDispatcher {
         this.curr_req = req;
         if (buffer.check_buff(this.limit) == -1) {
             reject_res.set(req.getSource_priority(), reject_res.get(req.getSource_priority()) + 1);
-            if (debug != null) debug.add_event(new CustomEvent(req.getGenerate_time(), req, CustomEvent.Event_type.REQUEST_REJECTED, buffer, null));
+            if (debug != null) debug.add_event(new CustomEvent(req.getGenerate_time(), req, CustomEvent.Event_type.REQUEST_REJECTED, buffer, null, null));
         } else {
             proceed_res.set(req.getSource_priority(), proceed_res.get(req.getSource_priority()) + 1);
             List<Request> b = buffer.getBuf();
             b.set(buffer.check_buff(this.limit), req);
             buffer.setBuf(b);
-            if (debug != null) debug.add_event(new CustomEvent(req.getGenerate_time(), req, CustomEvent.Event_type.REQUEST_IN_BUFFER, buffer, null));
+            if (debug != null) debug.add_event(new CustomEvent(req.getGenerate_time(), req, CustomEvent.Event_type.REQUEST_IN_BUFFER, buffer, null, null));
         }
     }
 

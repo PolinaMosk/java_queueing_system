@@ -1,5 +1,9 @@
 package smo.statistics;
 
+import smo.Request;
+
+import java.util.List;
+
 public class Results {
     private double av_time_buf;
     private double av_time_device;
@@ -14,15 +18,21 @@ public class Results {
     private double disp_buff;
     private double disp_device;
 
+    private List<Request> buffer;
+
     private double ratio_k;
 
     public void setP_reject() {
         this.p_reject = ((double) reject_num) / (proceed_num + reject_num);
     }
 
-    public void setAv_time_buf(Double times) {
-        this.av_time_buf = times / proceed_num;
-        this.disp_buff = this.av_time_buf / this.av_time_system;
+    public void setAv_time_buf(List<Double> times) {
+        this.av_time_buf = times.stream().mapToDouble(Double::doubleValue).sum() / proceed_num;
+        this.disp_buff = 0;
+        for (Double d: times){
+            this.disp_buff += (d - this.av_time_buf) * (d - this.av_time_buf);
+        }
+        this.disp_buff /= proceed_num;
     }
 
     public void setProceed_num(int proceed_num) {
@@ -46,9 +56,13 @@ public class Results {
     }
 
 
-    public void setAv_time_device(double av_time_device) {
-        this.av_time_device = av_time_device / proceed_num;
-        this.disp_device = this.av_time_device / this.av_time_system;
+    public void setAv_time_device(List<Double> av_time_device) {
+        this.av_time_device = av_time_device.stream().mapToDouble(Double::doubleValue).sum() / proceed_num;
+        this.disp_device = 0;
+        for (Double d: av_time_device){
+            this.disp_device += (d - this.av_time_device) * (d - this.av_time_device);
+        }
+        this.disp_device /= proceed_num;
     }
 
     public void setDevice_num(int device_num) {
@@ -58,6 +72,14 @@ public class Results {
     public void setTime_device(double time_device) {
         this.time_device = time_device;
         this.ratio_k = time_device / time_sim;
+    }
+
+    public List<Request> getBuffer() {
+        return buffer;
+    }
+
+    public void setBuffer(List<Request> buffer) {
+        this.buffer = buffer;
     }
 
     public double getAv_time_buf() {

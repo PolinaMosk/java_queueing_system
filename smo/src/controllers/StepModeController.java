@@ -51,6 +51,9 @@ public class StepModeController {
     private TableColumn<?, ?> device_num;
 
     @FXML
+    private HBox device_info;
+
+    @FXML
     private Button next;
 
     @FXML
@@ -62,8 +65,10 @@ public class StepModeController {
     private ObservableList<CustomEvent> event_info;
     private ObservableList<CustomEvent> event_row;
     private int step;
-    private int limit;
-    private List<Label> prev_label = new ArrayList<>();
+    private int limit1;
+    private int limit2;
+    private List<Label> prev_label1 = new ArrayList<>();
+    private List<Label> prev_label2 = new ArrayList<>();
 
     @FXML
     void initialize() {
@@ -88,10 +93,10 @@ public class StepModeController {
         this.table.setItems(event_row);
         List<Label> label = new ArrayList<>();
         if (event_info.get(step).getBuffer() != null) {
-            for (int i = 0; i < limit; i++) {
+            for (int i = 0; i < limit1; i++) {
                 Label labeli = new Label();
                 labeli.setStyle("-fx-border-color: black;");
-                labeli.setFont(new Font("Times New Roman", this.buffer_info.getWidth() / (2.5 * limit)));
+                labeli.setFont(new Font("Times New Roman", this.buffer_info.getWidth() / (2.5 * limit1)));
                 labeli.setAlignment(Pos.CENTER);
                 label.add(i, labeli);
                 labeli.setBorder(null);
@@ -103,16 +108,47 @@ public class StepModeController {
                 label.set(i, labeli);
             }
         } else {
-           label = prev_label;
+           label = prev_label1;
         }
         this.buffer_info.getChildren().setAll(label);
+
+
+        boolean flag = false;
+        this.device_info.getChildren().clear();
+        List<Label> labels = new ArrayList<>();
+        if (event_info.get(step).getDevices() != null) {
+            for (int i = 0; i < limit2; i++) {
+                Label labeli = new Label();
+                labeli.setStyle("-fx-border-color: black;");
+                labeli.setFont(new Font("Times New Roman", this.device_info.getWidth() / (2.5 * limit2)));
+                labeli.setAlignment(Pos.CENTER);
+                labels.add(i, labeli);
+                labeli.setBorder(null);
+                if (event_info.get(step).getDevices().get(i) == null) {
+                    labeli.setText("---");
+                } else {
+                    labeli.setText(event_info.get(step).getDevices().get(i).getNumber() + "[" + event_info.get(step).getDevices().get(i).getSource_priority() + "]");
+                }
+                labels.set(i, labeli);
+                if (labels.get(i) == null) flag = true;
+            }
+        } else {
+            if (prev_label2 == null) flag = true; else
+            labels = prev_label2;
+        }
+        this.device_info.getChildren().setAll(labels);
+
+
         this.step++;
-        prev_label.clear();
-        prev_label.addAll(label);
+        prev_label1.clear();
+        prev_label1.addAll(label);
+        if (!flag) prev_label2.clear();
+        if (!flag) prev_label2.addAll(labels);
     }
 
-    public void setLimit(int limit){
-        this.limit = limit;
+    public void setLimit(int limit1, int limit2){
+        this.limit1 = limit1;
+        this.limit2 = limit2;
     }
 
     public void back(MouseEvent mouseEvent) {

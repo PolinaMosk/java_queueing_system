@@ -21,7 +21,7 @@ public class Buffer {
 
     public Request next_req(){
         Comparator<Request> comparator = Comparator.comparing(Request::getSource_priority);
-        comparator.thenComparing(Request::getGenerate_time);
+        comparator.thenComparing(Request::getGenerate_time).reversed();
         List<Request> bf = new ArrayList<>(this.buf);
         bf.sort(Comparator.nullsLast(comparator));
         if (this.buf.size() > 0) return bf.get(0);

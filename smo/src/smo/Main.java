@@ -26,7 +26,8 @@ public class Main extends Application {
     private AutoModeController auto_controller;
     private MainWindowController main_controller;
     private Debug debug;
-    private int limit;
+    private int limit1;
+    private int limit2;
 
     private static List<Source> source = new ArrayList<>();
     private static List<Device> device = new ArrayList<>();
@@ -70,7 +71,7 @@ public class Main extends Application {
             this.step_controller = controller;
             primaryStage.show();
             controller.setMainApp(this);
-            controller.setLimit(limit);
+            controller.setLimit(limit1, limit2);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -86,7 +87,7 @@ public class Main extends Application {
             this.auto_controller = controller;
             primaryStage.show();
             auto_controller.setMainApp(this);
-            auto_controller.printInfo(results_source, results_device);
+            auto_controller.printInfo(results_source, results_device, buff_disp.getBuffer().getBuf());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -125,7 +126,7 @@ public class Main extends Application {
                 results_device.add(res);
                 i++;
             }
-            auto_controller.printInfo(results_source, results_device);
+            auto_controller.printInfo(results_source, results_device, buff_disp.getBuffer().getBuf());
         }
         end_sim();
     }
@@ -145,7 +146,8 @@ public class Main extends Application {
         num_of_source = config.getNum_of_source();
         if (!config.isDebug()) this.debug = null;
         else this.debug = new Debug();
-        this.limit = config.getBuff_size();
+        this.limit1 = config.getBuff_size();
+        this.limit2 = config.getNum_of_device();
         for (int i = 0; i < config.getNum_of_source(); i++){
             Source s = new Source(i, config.getA(), config.getB());
             source.add(s);
@@ -171,7 +173,7 @@ public class Main extends Application {
         Optional<Source> min_time = source.stream().min(comparator);
         Request req = min_time.get().getCurrent_req();
         req.setNumber(req_count++);
-        if (this.debug != null) debug.add_event(new CustomEvent(req.getGenerate_time(), req, CustomEvent.Event_type.REQUEST_GENERATED, null, null));
+        if (this.debug != null) debug.add_event(new CustomEvent(req.getGenerate_time(), req, CustomEvent.Event_type.REQUEST_GENERATED, null, null, null));
         buff_disp.put(min_time.get().getCurrent_req());
         min_time.get().setCurrent_time(-1);
         current_time = min_time.get().getCurrent_req().getGenerate_time();

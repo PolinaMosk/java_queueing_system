@@ -3,15 +3,21 @@ package controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import smo.Main;
+import smo.Request;
 import smo.statistics.Results;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -67,6 +73,9 @@ public class AutoModeController {
     private TableView<Results> table2;
 
     @FXML
+    private HBox buffer;
+
+    @FXML
     private TableColumn<?, ?> time_device;
 
     @FXML
@@ -86,13 +95,31 @@ public class AutoModeController {
         ratio_k.setCellValueFactory(new PropertyValueFactory<>("ratio_k"));
     }
 
-    public void printInfo(List<Results> sources, List<Results> device){
+    public void printInfo(List<Results> sources, List<Results> device, List<Request> buf){
         ObservableList<Results> source_res = FXCollections.observableArrayList();
         source_res.addAll(sources);
         this.table1.setItems(source_res);
         ObservableList<Results> device_res = FXCollections.observableArrayList();
         device_res.addAll(device);
         this.table2.setItems(device_res);
+
+        List<Label> label = new ArrayList<>();
+        for (int i = 0; i < buf.size(); i++) {
+            Label labeli = new Label();
+            labeli.setStyle("-fx-border-color: black;");
+            labeli.setMinHeight(this.buffer.getHeight());
+            labeli.setFont(new Font("Times New Roman", this.buffer.getWidth() / (5 * buf.size())));
+            labeli.setAlignment(Pos.CENTER);
+            label.add(i, labeli);
+            labeli.setBorder(null);
+            if (buf.get(i) == null) {
+                labeli.setText("---");
+            } else {
+                labeli.setText(buf.get(i).getNumber() + "[" + buf.get(i).getSource_priority() + "]");
+            }
+            label.set(i, labeli);
+        }
+        this.buffer.getChildren().setAll(label);
     }
 
     public void setMainApp(Main mainApp) {

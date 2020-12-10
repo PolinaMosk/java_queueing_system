@@ -53,6 +53,13 @@ public class MainWindowController {
     void initialize() {
         step_mode.setToggleGroup(toggleGroup);
         auto_mode.setToggleGroup(toggleGroup);
+        alpha_input.setText("0.0");
+        beta_input.setText("1.0");
+        lambda_input.setText("0.5");
+        num_of_source.setText("10");
+        num_of_device.setText("5");
+        buffer_size.setText("5");
+        time_input.setText("1000.0");
     }
 
     @FXML

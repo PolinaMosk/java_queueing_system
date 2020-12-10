@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CustomEvent {
     public enum Event_type {
-        REQUEST_GENERATED, REQUEST_REJECTED, REQUEST_IN_BUFFER, REQUEST_ON_DEVICE
+        REQUEST_GENERATED, REQUEST_REJECTED, REQUEST_IN_BUFFER, REQUEST_ON_DEVICE, DEVICE_FREE
     }
     private String event_time;
     private String request_num;
@@ -18,9 +18,10 @@ public class CustomEvent {
     private String device_num;
     private String device_free_time;
     private List<Request> buffer;
+    private List<Request> devices;
 
 
-    public CustomEvent(Double event_time, Request req, Event_type event_type, Buffer buffer, Device device) {
+    public CustomEvent(Double event_time, Request req, Event_type event_type, Buffer buffer, Device device, List<Device> devices) {
         this.event_time = event_time.toString();
         this.event_type = event_type;
         if (buffer != null) {
@@ -35,6 +36,12 @@ public class CustomEvent {
         } else {
             this.device_num = String.valueOf(device.getPriority());
             this.device_free_time = String.valueOf(device.getFree_time());
+        }
+        if (devices != null) {
+            this.devices = new ArrayList<>();
+            for (Device d : devices) {
+                this.devices.add(d.getCurr_req());
+            }
         }
     }
 
@@ -65,5 +72,9 @@ public class CustomEvent {
 
     public String getDevice_free_time() {
         return device_free_time;
+    }
+
+    public List<Request> getDevices() {
+        return devices;
     }
 }
